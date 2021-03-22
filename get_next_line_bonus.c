@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:44:44 by tmoragli          #+#    #+#             */
-/*   Updated: 2021/03/19 18:46:11 by tmoragli         ###   ########.fr       */
+/*   Updated: 2021/03/22 19:44:01 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,26 @@ int		ft_line(int fd, char **stock)
 
 int		get_next_line(int fd, char **line)
 {
-	static char    *stock[150];
-    int            ret;
-    char        *temp;
+	static char		*stock[150];
+	int				ret;
+	char			*temp;
 
-    if (read(fd, temp, 0) < 0|| line == NULL || BUFFER_SIZE <= 0)
-        return (-1);
-    temp = NULL;
-    ret = 1;
-    if (!ft_strchr(stock[fd], '\n'))
-        ret = ft_line(fd, &stock[fd]);
-    if (ret == 0 && !ft_strchr(stock[fd], '\n')) {
-        *line = ft_strdup(stock[fd]);
-    }
-    else
-    {
-        ret = 1;
-        *line = ft_substr(stock[fd], 0,
-        (ft_strchr(stock[fd], '\n') - stock[fd]));
-        temp = ft_strdup(ft_strchr(stock[fd], '\n') + 1);
-    }
-    free(stock[fd]);
-    stock[fd] = temp;
-    return (ret);
+	if (read(fd, temp, 0) < 0|| line == NULL || BUFFER_SIZE <= 0)
+		return (-1);
+	temp = NULL;
+	ret = 1;
+	if (!ft_strchr(stock[fd], '\n'))
+		 ret = ft_line(fd, &stock[fd]);
+	if (ret == 0 && !ft_strchr(stock[fd], '\n'))
+		*line = ft_strdup(stock[fd]);
+	else
+	{
+		ret = 1;
+		*line = ft_substr(stock[fd], 0,
+		(ft_strchr(stock[fd], '\n') - stock[fd]));
+		temp = ft_strdup(ft_strchr(stock[fd], '\n') + 1);
+	}
+	free(stock[fd]);
+	stock[fd] = temp;
+	return (ret);
 }
