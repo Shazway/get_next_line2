@@ -6,7 +6,7 @@
 /*   By: tmoragli <tmoragli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 01:17:31 by tmoragli          #+#    #+#             */
-/*   Updated: 2021/03/22 19:43:53 by tmoragli         ###   ########.fr       */
+/*   Updated: 2021/03/22 19:49:59 by tmoragli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int		get_next_line(int fd, char **line)
 	int				ret;
 	char			*temp;
 
-	if (read(fd, temp, 0) < 0|| line == NULL || BUFFER_SIZE <= 0)
+	if (read(fd, temp, 0) < 0 || line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
 	temp = NULL;
 	ret = 1;
 	if (!ft_strchr(stock[fd], '\n'))
-		 ret = ft_line(fd, &stock[fd]);
+		ret = ft_line(fd, &stock[fd]);
 	if (ret == 0 && !ft_strchr(stock[fd], '\n'))
 		*line = ft_strdup(stock[fd]);
 	else
